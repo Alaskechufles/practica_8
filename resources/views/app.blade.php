@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <main class=" bg-white h-screen flex flex-col items-center">
+    <main class=" bg-[#F5F7F8] h-screen flex flex-col items-center">
         <nav class="w-full border-b-2 flex flex-row justify-between h-[75px] items-center px-16 bg-white">
             <ul class=" flex flex-row gap-10">
                 <li>
@@ -43,7 +43,32 @@
         </nav>
         <div class="w-[80%] flex flex-row flex-wrap justify-around p-10">
 
-            <x-card />
+            @foreach ($formattedPosts as $post)
+                <x-card>
+                    <x-slot name="titulo">
+                        {{ $post->titulo }}
+                    </x-slot>
+                    <x-slot name="genero">
+                        {{ $post->genero }}
+                    </x-slot>
+                    <x-slot name="descripcion">
+                        {{ $post->descripcion }}
+                    </x-slot>
+                    <x-slot name="nombreAutor">
+                        {{ $post->autor }}
+                    </x-slot>
+                    <x-slot name="fechaPost">
+                        {{ $post->fecha_de_publicacion }}
+                    </x-slot>
+                    <x-slot name="imgPost">
+                        data:image/jpeg;base64,{{ base64_encode($post->imagen_post) }}
+                    </x-slot>
+                    <x-slot name="imgAutor">
+                        data:image/jpeg;base64,{{ base64_encode($post->imagen_autor) }}
+                    </x-slot>
+                </x-card>
+            @endforeach
+
 
         </div>
     </main>

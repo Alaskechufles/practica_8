@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/app', function () {
-    return view('app');
-});
+Route::get('/app', [PostController::class, 'show']);
+Route::get('/app', [PostController::class, 'index']);
 Route::get('/images/{filename}', function ($filename) {
     return asset('images/' . $filename);
 })->name('image.show');
